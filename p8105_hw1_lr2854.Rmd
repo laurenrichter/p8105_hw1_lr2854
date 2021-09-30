@@ -84,15 +84,18 @@ Export your first scatterplot to your project directory using ```ggsave```.
 
 **ANSWER:** The Penguins dataset is a 344 x 8 dataframe. The variables include the species (Adelie, Chinstrap, and Gentoo), the island (Biscoe, Dream, and Torgersen), the bill length, bill depth, and flipper length in mm, body mass in g, and sex (male or female). You can get the names of the different species or islands using the ```levels``` function.
 
-The mean penguin flipper length is 200.9152, with 2 NA values dropped.
-
-```{r mean_flipper_len}
-mean(penguins$flipper_length_mm,na.rm = TRUE)
-```
-
-```{r penguins_levels, warning = FALSE, echo = FALSE}
+```{r penguins_levels, warning = FALSE}
 levels(penguins$species)
 levels(penguins$island)
 levels(penguins$sex)
 ```
 
+The mean penguin flipper length is 200.9152, with 2 NA values dropped.
+
+```{r mean_flipper_len, warning = FALSE}
+mean(penguins$flipper_length_mm,na.rm = TRUE)
+```
+
+```{r penguin_scatterplot, warning = FALSE}
+ggplot(penguins, aes(y = flipper_length_mm, x = bill_length_mm, color = species)) + geom_point()
+ggsave("penguin_scatterplot_lr2854.pdf")
