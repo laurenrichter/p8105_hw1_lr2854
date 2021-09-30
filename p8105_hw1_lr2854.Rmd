@@ -1,30 +1,41 @@
 ---
 title: "p8105_hw1_lr2854"
+author: "Lauren Richter"
+date: 2021-09-29
 output: github_document
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## GitHub Documents
+## Problem 1
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+This problem is intended to emphasize variable types and introduce coercion; some awareness of how R treats numeric, character, and factor variables is necessary for working with these data types in practice.
 
-## Including Code
+Create a data frame comprised of:
 
-You can include R code in the document as follows:
+- a random sample of size 10 from a standard Normal distribution
+- a logical vector indicating whether elements of the sample are greater than 0
+- a character vector of length 10
+- a factor vector of length 10, with 3 different factor “levels”
 
-```{r cars}
-summary(cars)
+```{r prob1a, warning = FALSE}
+
+prob1a_df = tibble(
+  norm_sample_10 = rnorm(10),
+  is_gt_0 = c(norm_sample_10 > 0),
+  char_vec = letters[1:10],
+  factor_vec = factor(
+    c(rep("cow",4),
+      rep("chicken",3),
+      rep("dog",3)
+      )
+    )
+)
+
+prob1a_df
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
