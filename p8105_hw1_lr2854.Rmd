@@ -62,3 +62,37 @@ as.numeric(pull(prob1a_df,char_vec))
 as.numeric(pull(prob1a_df,factor_vec))
 
 ```
+
+## Problem 2
+
+This problem focuses the use of inline R code, plotting, and the behavior of ```ggplot``` for variables of different types.
+
+Use the code below to download the a package containing the ```penguins``` dataset:
+
+```{r penguins, warning = FALSE}
+data("penguins", package = "palmerpenguins")
+```
+
+Write a short description of the ```penguins``` dataset (not the ```penguins_raw``` dataset) using inline R code, including:
+
+- the data in this dataset, including names / values of important variables
+- the size of the dataset (using ```nrow``` and ```ncol```)
+- the mean flipper length
+- Make a scatterplot of ```flipper_length_mm``` (y) vs ```bill_length_mm``` (x); color points using the ```species``` variable (adding ```color = ...``` inside of ```aes``` in your ggplot code should help).
+
+Export your first scatterplot to your project directory using ```ggsave```.
+
+**ANSWER:** The Penguins dataset is a 344 x 8 dataframe. The variables include the species (Adelie, Chinstrap, and Gentoo), the island (Biscoe, Dream, and Torgersen), the bill length, bill depth, and flipper length in mm, body mass in g, and sex (male or female). You can get the names of the different species or islands using the ```levels``` function.
+
+The mean penguin flipper length is 200.9152, with 2 NA values dropped.
+
+```{r mean_flipper_len}
+mean(penguins$flipper_length_mm,na.rm = TRUE)
+```
+
+```{r penguins_levels, warning = FALSE, echo = FALSE}
+levels(penguins$species)
+levels(penguins$island)
+levels(penguins$sex)
+```
+
