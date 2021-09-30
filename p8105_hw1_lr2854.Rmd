@@ -37,5 +37,28 @@ prob1a_df = tibble(
 
 prob1a_df
 ```
+Try to take the mean of each variable in your dataframe. What works and what doesn’t?
 
+*Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the ```pull``` function.*
 
+**ANSWER:** You can take the mean of the numeric data, but not the character data (which includes the factor data). The logical vector is converted to numeric 0 or 1 and the mean is taken from that.
+```{r prob1b, warning = FALSE}
+
+mean(pull(prob1a_df,norm_sample_10))
+mean(pull(prob1a_df,is_gt_0))
+mean(pull(prob1a_df,char_vec))
+mean(pull(prob1a_df,factor_vec))
+
+```
+
+In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+
+**ANSWER:** Boolean statements are converted to numeric ones (which already happened previously...?). The character vector cannot be assigned a number because there is no obvious order. The factor vector is converted from categorical to numeric data, so "cow" becomes 2, "chicken" becomes 1, and "dog" becomes 3 (because it ordered them alphabetically, not by the order in which they appear in the tibble).
+
+```{r prob1c, warning = FALSE, results = 'hide'}
+
+as.numeric(pull(prob1a_df,is_gt_0))
+as.numeric(pull(prob1a_df,char_vec))
+as.numeric(pull(prob1a_df,factor_vec))
+
+```
